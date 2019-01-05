@@ -1,0 +1,9 @@
+---
+
+- name: Instalando o PIP 3
+  dnf:
+   name: python3
+   state: present
+  become: true
+  tags:
+   - pip

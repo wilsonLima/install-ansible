@@ -1,0 +1,46 @@
+---
+# tasks file for install-ansible
+
+- include_tasks: "{{ item }}"
+  with_first_found:
+   - "{{ ansible_distribution | lower }}.yml"
+   - "{{ ansible_os_family | lower }}.yml"
+   - "os_defaults.yml"
+  tags: 
+   - main
+
+
+- name: Atualizando o PIP
+  when: os_default is not defined
+  pip:
+    name: pip
+    state: latest
+  become: true
+  tags:
+    - pip
+    - ansible
+
+
+- name: Instalando o Ansible
+  when: os_default is not defined
+  pip:
+    name: "ansible=={{ version_ansible }}"
+    state: present
+  become: true
+  tags:
+    - pip
+    - ansible
+
+
+- name: Configurando o ambiente default do Ansible
+  when: os_default is not defined and custom_home is not defined
+  include_tasks: "default_config.yml"
+  tags: 
+   - main
+
+   
+- name: Configurando o ambiente customizado do Ansible
+  when: os_default is not defined and custom_home is defined
+  include_tasks: "custom_config.yml"
+  tags: 
+   - main

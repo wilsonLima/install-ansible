@@ -1,0 +1,30 @@
+---
+
+- name: Instalando o build-essential
+  apt:
+    name: build-essential
+    state: present
+    update_cache: yes
+  become: true
+  tags:
+    - pip
+
+
+- name: Instalando o python-setuptools (Python 2)
+  apt:
+    name: python-setuptools
+    state: present
+    update_cache: yes
+  become: true
+  tags:
+    - pip
+
+
+- name: Instalando o PIP
+  apt:
+    name: python-pip
+    state: present
+    update_cache: yes
+  become: true
+  tags:
+    - pip

@@ -1,0 +1,18 @@
+---
+    
+- name: Instalando o Repositorio Epel
+  yum: 
+    name: epel-release
+    state: present
+  become: true
+  tags:
+   - pip
+  
+
+- name: Instalando o PIP
+  yum:
+    name: python-pip
+    state: present
+  become: true
+  tags:
+   - pip

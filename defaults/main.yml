@@ -1,0 +1,4 @@
+---
+# defaults file for install-ansible
+
+version_ansible: "2.7.4"
