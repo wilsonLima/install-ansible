@@ -1,9 +1,9 @@
 ---
 
-- name: Instalando o PIP 3
+- name: "Instalando o pacote 'Ansible'"
   dnf:
-   name: python3
+   name: ansible
    state: present
   become: true
   tags:
-   - pip
+   - ansible

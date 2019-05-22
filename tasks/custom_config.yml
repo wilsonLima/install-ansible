@@ -17,29 +17,7 @@
   become: true
   tags:
     - directory
-
-- name: Criando estrutura de diretorios de /etc/ansible
-  file:
-    path: "/etc/ansible"
-    state: directory
-    owner: root
-    group: root
-    mode: 0775
-    recurse: yes
-  become: true
-  tags:
-    - config
-
-- name: Copiando o arquivo de configuracao ansible.cfg
-  copy:
-    src: ansible.cfg
-    dest: /etc/ansible/ansible.cfg
-    owner: root
-    group: root
-    mode: 0644
-  become: true
-  tags:
-    - config
+  
 
 - name: Atualizando a propriedade roles_path em /etc/ansible/ansible.cfg
   lineinfile:
@@ -53,7 +31,7 @@
     - config
 
 
-- name: Atualizando a propriedade log_path em /etc/ansible/ansible.cfg
+- name: "Atualizando a propriedade log_path em '/etc/ansible/ansible.cfg'"
   lineinfile:
     path: /etc/ansible/ansible.cfg
     regexp: "log_path"
@@ -65,7 +43,7 @@
     - config
 
 
-- name: Atualizando a propriedade private_key_file em /etc/ansible/ansible.cfg
+- name: "Atualizando a propriedade private_key_file em '/etc/ansible/ansible.cfg'"
   lineinfile:
     path: /etc/ansible/ansible.cfg
     regexp: "#private_key_file"

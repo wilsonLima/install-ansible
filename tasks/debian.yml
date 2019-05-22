@@ -1,30 +1,28 @@
 ---
 
-- name: Instalando o build-essential
+- name: "Adicionando o repositorio do Ansible"
+  apt_repository:
+    repo: ppa:ansible/ansible
+    update_cache: yes
+  tags:
+    - repo
+
+
+- name: "Instalando o pacote 'software-properties-common'"
   apt:
-    name: build-essential
+    name: software-properties-common
     state: present
     update_cache: yes
   become: true
   tags:
-    - pip
+    - deps
 
 
-- name: Instalando o python-setuptools (Python 2)
+- name: "Instalando o pacote 'Ansible'"
   apt:
-    name: python-setuptools
+    name: ansible
     state: present
     update_cache: yes
   become: true
   tags:
-    - pip
-
-
-- name: Instalando o PIP
-  apt:
-    name: python-pip
-    state: present
-    update_cache: yes
-  become: true
-  tags:
-    - pip
+    - ansible
