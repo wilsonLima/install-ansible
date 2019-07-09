@@ -5,7 +5,7 @@
     path: "{{ item }}"
     state: directory
     owner: "{{ ansible_user_id }}"
-    group: "{{ ansible_user_id }}"
+    group: "{{ ansible_real_group_id }}"
     mode: 0775
     recurse: yes
   with_items:
