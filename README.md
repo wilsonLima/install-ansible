@@ -8,11 +8,12 @@ Distribuições Suportadas pela Role
 
 - Debian Jessie ou superior.
 - RedHat ou CentOS.
-- Fedora 29 ou superior
-- Linux Mint 18 ou superior
-- openSUSE Leap 15.0 ou superior
-- openSUSE Tumbleweed
-- Ubuntu 18.10 ou superior
+- Fedora 29 ou superior          (sudo habilitado)
+- Linux Mint LMDE 3 ou superior  (sudo habilitado)
+- Linux Mint 18 ou superior      (sudo habilitado)
+- openSUSE Leap 15.0 ou superior (sudo habilitado)
+- openSUSE Tumbleweed            (sudo habilitado)
+- Ubuntu 18.10 ou superior       (sudo habilitado)
 
 
 Tags da Role 
@@ -21,7 +22,7 @@ Tags da Role
 - main: Tag a ser utilizada em conjunto com outras tags, se alguma tag for especificada no comando.
 - deps: Instala as dependências essenciais para o Ansible.
 - repo: Adiciona os repositórios do Ansible.
-- ansible: Realiza a instalação do pacote Ansible, via instalador Pip.
+- ansible: Realiza a instalação do pacote Ansible, via instalador Pip no openSUSE ou package manager em outras distribuições.
 - directory: Cria os diretórios onde ficam os playbooks, roles e outros componentes do Ansible.
 - config: Realiza a configuração de pós instalação do Ansible.
 

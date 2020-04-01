@@ -1,8 +1,8 @@
 ---
 
-- name: "Instalando o PIP 3"
+- name: "Instalando o Python 3"
   zypper:
-   name: python3-pip
+   name: "{{ python_packages }}"
    state: present
    force: yes
   become: true
@@ -47,7 +47,7 @@
     dest: /etc/ansible/ansible.cfg
     owner: "{{ ansible_user_id }}"
     group: "{{ ansible_real_group_id }}"
-    mode: 0644
+    mode: '0644'
   become: true
   tags:
     - config

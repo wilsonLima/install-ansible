@@ -1,0 +1,39 @@
+---
+
+
+- name: "Instalando as dependencias"
+  apt:
+    name: "{{ debian_like_deps }}"
+    state: present
+    update_cache: yes
+  become: true
+  tags:
+    - deps
+
+
+- name: "Adicionando chave do repositorio do Ansible Ubuntu"
+  apt_key:
+    keyserver: "keyserver.ubuntu.com"
+    id: "93C4A3FD7BB9C367"
+  become: true
+  tags:
+    - repo
+
+
+- name: "Adicionando o repositorio do Ansible no Ubuntu"
+  apt_repository:
+    repo: ppa:ansible/ansible
+    update_cache: yes
+  become: true
+  tags:
+    - repo
+
+
+- name: "Instalando o pacote 'Ansible' no Ubuntu"
+  apt:
+    name: ansible
+    state: present
+    update_cache: yes
+  become: true
+  tags:
+    - ansible

@@ -5,54 +5,14 @@
     name: "{{ debian_like_deps }}"
     state: present
     update_cache: yes
-  become: true
   tags:
     - deps
 
 
-- name: "Adicionando chave do repositorio do Ansible"
-  apt_key:
-    keyserver: keyserver.ubuntu.com
-    id: 93C4A3FD7BB9C367
-  become: true
-  tags:
-    - repo
-
-
-- name: "Adicionando o repositorio do Ansible no Debian"
-  when: ansible_distribution == "Debian"
-  apt_repository:
-    repo: "deb http://ppa.launchpad.net/ansible/ansible/ubuntu {{ debian_ubuntu_versions[ansible_distribution_major_version] }} main"
-    update_cache: yes
-  tags:
-    - repo
-
-
-- name: "Adicionando o repositorio do Ansible no Ubuntu"
-  when: ansible_distribution == "Ubuntu"
-  apt_repository:
-    repo: ppa:ansible/ansible
-    update_cache: yes
-  become: true
-  tags:
-    - repo
-
-
-- name: "Adicionando o repositorio do Ansible no Linux Mint"
-  when: ansible_distribution == "Linux Mint"
-  apt_repository:
-    repo: "deb http://ppa.launchpad.net/ansible/ansible/ubuntu {{ mint_ubuntu_versions[ansible_distribution_major_version] }} main"
-    update_cache: yes
-  become: true
-  tags:
-    - repo
-
-
-- name: "Instalando o pacote 'Ansible'"
+- name: "Instalando o pacote 'Ansible' no Debian"
   apt:
     name: ansible
     state: present
     update_cache: yes
-  become: true
   tags:
     - ansible

@@ -1,10 +1,33 @@
 ---
-# vars file for install-ansible
+
+
+python_packages:
+  - python3
+  - python3-pip
+  - python3-setuptools
+
+
+debian_like_deps:
+  - software-properties-common
+  - apt-transport-https 
+  - ca-certificates
+  - dirmngr 
+
+
+lmde_debian_versions: {
+  "2" : "8",
+  "3" : "9",
+  "4" : "10",
+
+}
+
 
 debian_ubuntu_versions: {
-  "8" : "trusty",
-  "9" : "trusty"
+  "8"  : "trusty",
+  "9"  : "xenial",
+  "10" : "eoan"
 }
+
 
 mint_ubuntu_versions: {
   "17" : "trusty",
@@ -12,7 +35,23 @@ mint_ubuntu_versions: {
   "19" : "bionic"
 }
 
-debian_like_deps:
-  - software-properties-common
-  - apt-transport-https 
-  - ca-certificates 
+
+mint_lmde_versions :
+  - betsy
+  - cindy
+  - debbie
+
+
+mint_versions :
+  - qiana
+  - rebecca
+  - rafaela
+  - rosa 
+  - sarah
+  - serena
+  - sonya
+  - sylvia
+  - tara
+  - tessa
+  - tina
+  - tricia
