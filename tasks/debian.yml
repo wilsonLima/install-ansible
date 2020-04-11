@@ -1,6 +1,6 @@
 ---
 
-- name: "Instalando as dependencias"
+- name: "Instalando as dependencias em {{ ansible_os_family }}"
   apt:
     name: "{{ debian_like_deps }}"
     state: present
@@ -9,7 +9,7 @@
     - deps
 
 
-- name: "Instalando o pacote 'Ansible' no Debian"
+- name: "Instalando o pacote 'Ansible' em {{ ansible_os_family }}"
   apt:
     name: ansible
     state: present

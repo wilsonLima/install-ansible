@@ -1,18 +1,16 @@
 ---
     
-- name: "Instalando o Repositorio Epel"
+- name: "Instalando o Repositorio Epel em {{ ansible_os_family }}"
   yum: 
     name: epel-release
     state: present
-  become: true
   tags:
    - deps
   
 
-- name: "Instalando o pacote 'Ansible'"
+- name: "Instalando o pacote 'Ansible' em {{ ansible_os_family }}"
   yum:
     name: ansible
     state: present
-  become: true
   tags:
    - ansible

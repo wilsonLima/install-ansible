@@ -11,14 +11,14 @@
 
 
 - name: Configurando o ambiente default do Ansible
-  when: os_default is not defined and custom_home is not defined
+  when: os_default is not defined and root_env_dir is not defined
   include_tasks: "default_config.yml"
   tags: 
    - main
 
    
 - name: Configurando o ambiente customizado do Ansible
-  when: os_default is not defined and custom_home is defined
+  when: os_default is not defined and root_env_dir is defined
   include_tasks: "custom_config.yml"
   tags: 
    - main

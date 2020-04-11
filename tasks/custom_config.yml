@@ -1,6 +1,6 @@
 ---
 
-- name: Criando estrutura de diretorios
+- name: "Criando estrutura de diretorios em {{ home_dir }}/{{ root_env_dir }}"
   file:
     path: "{{ item }}"
     state: directory
@@ -9,47 +9,43 @@
     mode: 0775
     recurse: yes
   with_items:
-    - "/home/{{ custom_home }}/devops/ansible/inventories"
-    - "/home/{{ custom_home }}/devops/ansible/keys"
-    - "/home/{{ custom_home }}/devops/ansible/logs"
-    - "/home/{{ custom_home }}/devops/ansible/playbooks"
-    - "/home/{{ custom_home }}/devops/ansible/roles"
-  become: true
+    - "{{ home_dir }}/{{ root_env_dir }}/devops/ansible/inventories"
+    - "{{ home_dir }}/{{ root_env_dir }}/devops/ansible/keys"
+    - "{{ home_dir }}/{{ root_env_dir }}/devops/ansible/logs"
+    - "{{ home_dir }}/{{ root_env_dir }}/devops/ansible/playbooks"
+    - "{{ home_dir }}/{{ root_env_dir }}/devops/ansible/roles"
   tags:
     - directory
-  
 
-- name: Atualizando a propriedade roles_path em /etc/ansible/ansible.cfg
+
+- name: "Atualizando a propriedade roles_path em /etc/ansible/ansible.cfg"
   lineinfile:
-    path: /etc/ansible/ansible.cfg
+    path: "/etc/ansible/ansible.cfg"
     regexp: "roles_path"
-    line: "roles_path    = /home/{{ custom_home }}/devops/ansible/roles"
+    line: "roles_path    = {{ home_dir }}/{{ root_env_dir }}/devops/ansible/roles"
     backrefs: yes
     state: present
-  become: true
   tags:
     - config
 
 
 - name: "Atualizando a propriedade log_path em '/etc/ansible/ansible.cfg'"
   lineinfile:
-    path: /etc/ansible/ansible.cfg
+    path: "/etc/ansible/ansible.cfg"
     regexp: "log_path"
-    line: "log_path = /home/{{ custom_home }}/devops/ansible/logs/ansible.log"
+    line: "log_path = {{ home_dir }}/{{ root_env_dir }}/devops/ansible/logs/ansible.log"
     backrefs: yes
     state: present
-  become: true
   tags:
     - config
 
 
-- name: "Atualizando a propriedade private_key_file em '/etc/ansible/ansible.cfg'"
+- name: "Atualizando a propriedade timeout em '/etc/ansible/ansible.cfg'"
   lineinfile:
-    path: /etc/ansible/ansible.cfg
-    regexp: "#private_key_file"
-    line: "#private_key_file = /home/{{ custom_home }}/ansible/keys/key.pem"
+    path: "/etc/ansible/ansible.cfg"
+    regexp: "timeout ="
+    line: "timeout = {{ timeout_value }}"
     backrefs: yes
     state: present
-  become: true
   tags:
     - config
