@@ -25,7 +25,7 @@ Variáveis da Role
 --------------
 
 - home_dir: Diretório home para a criação dos diretórios de desenvolvimento. Valor padrão, o HOME do usuário linux utilizado no inventário.
-- root_env_dir: Especifica um diretório customizado onde ficam os playbooks, roles e outros componentes do Ansible. Variável opcional.
+- root_env_dir: Especifica um diretório customizado onde ficam os playbooks, roles e outros componentes do Ansible. Variável opcional, exemplo de valor: /opt .
 - timeout_value: Representa o valor de timeout na conexão SSH, em segundos. Valor padrão: "30".
 
 
