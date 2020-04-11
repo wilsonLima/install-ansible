@@ -9,10 +9,50 @@
     - deps
 
 
-- name: "Instalando o pacote 'Ansible' em {{ ansible_os_family }}"
+- name: "Instalando os pacotes do Python 3"
   apt:
-    name: ansible
+    name: "{{ python_packages }}"
     state: present
     update_cache: yes
   tags:
+    - deps
+
+
+- name: "Atualizando o PIP"
+  pip:
+    name: pip
+    state: latest
+  tags:
+    - deps
+
+
+- name: "Instalando o pacote 'Ansible' no Debian com Python Pip"
+  pip:
+    name: ansible
+    state: latest
+  tags:
     - ansible
+
+
+- name: Criando estrutura de diretorios de /etc/ansible
+  file:
+    path: "/etc/ansible"
+    state: directory
+    owner: "{{ ansible_user_id }}"
+    group: "{{ ansible_real_group_id }}"
+    mode: 0775
+    recurse: yes
+  tags:
+    - config
+
+
+- name: Copiando o arquivo de configuracao ansible.cfg
+  copy:
+    src: ansible.cfg
+    dest: /etc/ansible/ansible.cfg
+    owner: "{{ ansible_user_id }}"
+    group: "{{ ansible_real_group_id }}"
+    mode: '0644'
+  become: true
+  tags:
+    - config
